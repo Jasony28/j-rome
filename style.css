@@ -221,3 +221,44 @@ body[data-theme="classique"] .footer-col h4 { color: #fff; margin-bottom: 15px; 
     
     body[data-theme="classique"] .footer-content { flex-direction: column; gap: 30px; }
 }
+
+/* =========================================
+   CORRECTIONS SPÉCIFIQUES SMARTPHONES (GSM)
+   ========================================= */
+@media (max-width: 768px) {
+    /* Barre de démo plus petite pour laisser de la place à l'écran */
+    .demo-bar { padding: 8px 5px; gap: 5px; }
+    .demo-bar button { padding: 6px 10px; font-size: 11px; }
+
+    /* HEADER & NAVIGATION : On empile tout proprement au centre */
+    .site-header { flex-direction: column !important; text-align: center; padding: 20px 10px !important; position: relative !important; }
+    .site-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px !important; margin-top: 15px; }
+    .site-nav a { margin: 0 !important; font-size: 13px !important; }
+
+    /* On retire les positions absolues des logos pour éviter les chevauchements (Thème Luxe et Organique) */
+    body[data-theme="prestige"] .logo, body[data-theme="organique"] .logo { position: relative; left: 0; margin-bottom: 10px; }
+
+    /* TEXTES HÉROS : On réduit les tailles énormes pour que ça rentre dans l'écran */
+    .hero-content { padding: 60px 20px !important; text-align: center !important; margin: 0 auto !important; }
+    .hero h2 { font-size: 2.5rem !important; line-height: 1.2 !important; margin-bottom: 20px !important; }
+    body[data-theme="industriel"] .hero h2 { font-size: 3.5rem !important; }
+    .hero p { font-size: 1rem !important; margin-bottom: 30px !important; }
+
+    /* BOUTONS : Centrés sur mobile */
+    .btn-cta { align-self: center !important; margin: 0 auto !important; display: inline-block; }
+
+    /* SERVICES : On enlève les marges excessives */
+    .services { padding: 60px 20px !important; }
+    .section-title h2 { font-size: 2rem !important; }
+    .services-grid { gap: 20px !important; }
+    .card { padding: 30px 20px !important; min-width: 100% !important; }
+
+    /* AJUSTEMENTS SPÉCIFIQUES HÉROS */
+    body[data-theme="authentique"] .hero { padding: 100px 20px !important; }
+    body[data-theme="organique"] .hero { border-radius: 0 0 20% 20% / 5vw !important; padding: 120px 20px 80px 20px !important; }
+    body[data-theme="organique"] .hero-visual { height: 250px !important; margin-top: -40px !important; border-radius: 20px !important; }
+    
+    /* FOOTER : Centrer sur mobile */
+    footer { padding: 40px 20px !important; text-align: center !important; }
+    .footer-content { flex-direction: column !important; align-items: center !important; gap: 30px; }
+}
