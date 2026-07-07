@@ -1,0 +1,223 @@
+/* =========================================
+   RESET ET BASE COMMUNES
+   ========================================= */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { transition: background-color 0.4s ease, color 0.4s ease; overflow-x: hidden; }
+
+/* BARRE DE DEMO */
+.demo-bar {
+    background-color: #111; color: white; padding: 12px; text-align: center;
+    position: fixed; bottom: 0; left: 0; width: 100%; z-index: 10000; font-family: sans-serif;
+    display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+}
+.demo-bar h3 { font-size: 14px; margin: 0; color: #aaa; font-weight: normal; }
+.demo-bar button {
+    background: #333; color: white; border: none; padding: 8px 12px; 
+    cursor: pointer; border-radius: 4px; transition: 0.2s; font-size: 12px;
+}
+.demo-bar button:hover, .demo-bar button.active { background: #fff; color: #111; font-weight: bold; }
+
+/* =========================================
+   THEME 1 : MODERNE / STARTUP (Asymétrique)
+   ========================================= */
+body[data-theme="moderne"] { background-color: #ffffff; color: #2b2b2b; font-family: 'Inter', sans-serif; padding-bottom: 60px; }
+body[data-theme="moderne"] .site-wrapper { display: block; }
+body[data-theme="moderne"] .site-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5vw; background: #fff; border-bottom: 1px solid #eaeaea; }
+body[data-theme="moderne"] .logo { font-size: 24px; font-weight: 700; color: #0056b3; }
+body[data-theme="moderne"] .site-nav a { margin-left: 30px; text-decoration: none; color: #555; font-weight: 600; font-size: 14px; text-transform: uppercase; }
+body[data-theme="moderne"] .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 80vh; align-items: center; }
+body[data-theme="moderne"] .hero-content { padding: 10vw 5vw; }
+body[data-theme="moderne"] .hero h2 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; font-weight: 700; color: #111; }
+body[data-theme="moderne"] .hero p { font-size: 1.1rem; color: #666; margin-bottom: 30px; line-height: 1.6; }
+body[data-theme="moderne"] .btn-cta { background: #0056b3; color: #fff; padding: 15px 30px; text-decoration: none; border-radius: 50px; font-weight: 600; display: inline-block; }
+body[data-theme="moderne"] .hero-visual { height: 100%; min-height: 500px; background: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80') center/cover no-repeat; border-bottom-left-radius: 80px; }
+body[data-theme="moderne"] .services { padding: 80px 5vw; background: #f8f9fc; }
+body[data-theme="moderne"] .section-title h2 { font-size: 2.5rem; color: #0056b3; margin-bottom: 40px; }
+body[data-theme="moderne"] .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+body[data-theme="moderne"] .card { background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border-top: 4px solid #0056b3; }
+body[data-theme="moderne"] .card-icon { font-size: 40px; margin-bottom: 20px; }
+body[data-theme="moderne"] .card h3 { font-size: 1.5rem; margin-bottom: 15px; color: #111; }
+body[data-theme="moderne"] footer { background: #1a1a1a; color: #fff; padding: 60px 5vw 20px; }
+body[data-theme="moderne"] .footer-content { display: flex; justify-content: space-between; margin-bottom: 40px; }
+
+/* =========================================
+   THEME 2 : ARTISAN / TRADITION (Centré)
+   ========================================= */
+body[data-theme="authentique"] { background-color: #f4f1ea; color: #3e362e; font-family: 'Roboto Slab', serif; padding-bottom: 60px; }
+body[data-theme="authentique"] .site-wrapper { display: block; }
+body[data-theme="authentique"] .site-header { display: flex; flex-direction: column; align-items: center; padding: 30px 20px; background: #4a3f35; color: #f4f1ea; }
+body[data-theme="authentique"] .logo { font-size: 32px; font-weight: 700; margin-bottom: 15px; border-bottom: 2px solid #d35400; padding-bottom: 5px; }
+body[data-theme="authentique"] .site-nav { display: flex; gap: 25px; }
+body[data-theme="authentique"] .site-nav a { text-decoration: none; color: #e0dcd3; font-weight: 400; }
+body[data-theme="authentique"] .hero { position: relative; text-align: center; color: white; padding: 150px 5vw; background: linear-gradient(rgba(74, 63, 53, 0.8), rgba(74, 63, 53, 0.8)), url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; }
+body[data-theme="authentique"] .hero-visual { display: none; }
+body[data-theme="authentique"] .hero-content { max-width: 800px; margin: 0 auto; }
+body[data-theme="authentique"] .hero h2 { font-size: 4rem; margin-bottom: 25px; }
+body[data-theme="authentique"] .hero p { font-size: 1.2rem; margin-bottom: 40px; line-height: 1.6; }
+body[data-theme="authentique"] .btn-cta { background: transparent; color: white; border: 2px solid #d35400; padding: 12px 35px; text-decoration: none; font-weight: bold; text-transform: uppercase; }
+body[data-theme="authentique"] .services { padding: 80px 5vw; text-align: center; }
+body[data-theme="authentique"] .section-title h2 { font-size: 2.5rem; margin-bottom: 50px; border-bottom: 3px solid #d35400; display: inline-block; padding-bottom: 10px; }
+body[data-theme="authentique"] .services-grid { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; }
+body[data-theme="authentique"] .card { background: #fff; padding: 40px 30px; border: 1px solid #dcd7cc; flex: 1; min-width: 300px; max-width: 400px; box-shadow: 6px 6px 0px #4a3f35; }
+body[data-theme="authentique"] .card-icon { font-size: 45px; margin-bottom: 20px; }
+body[data-theme="authentique"] .card h3 { font-size: 1.6rem; color: #d35400; margin-bottom: 15px; }
+body[data-theme="authentique"] footer { background: #2c251f; color: #e0dcd3; padding: 50px 5vw; text-align: center; }
+body[data-theme="authentique"] .footer-content { display: flex; flex-direction: column; gap: 20px; }
+
+/* =========================================
+   THEME 3 : LUXE / PRESTIGE (Sombre)
+   ========================================= */
+body[data-theme="prestige"] { background-color: #0a0a0a; color: #f0f0f0; font-family: 'Inter', sans-serif; padding-bottom: 60px; }
+body[data-theme="prestige"] .site-wrapper { display: block; }
+body[data-theme="prestige"] h2, body[data-theme="prestige"] h3 { font-family: 'Playfair Display', serif; }
+body[data-theme="prestige"] .site-header { display: flex; justify-content: center; align-items: center; padding: 40px 5vw; position: absolute; width: 100%; z-index: 10; border-bottom: 1px solid rgba(255,255,255,0.1); }
+body[data-theme="prestige"] .logo { position: absolute; left: 5vw; font-size: 22px; color: #cda873; text-transform: uppercase; letter-spacing: 4px; }
+body[data-theme="prestige"] .site-nav a { color: #fff; text-decoration: none; margin: 0 25px; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
+body[data-theme="prestige"] .hero { display: flex; align-items: center; min-height: 100vh; background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; position: relative; }
+body[data-theme="prestige"] .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, #0a0a0a 30%, rgba(10,10,10,0.4)); }
+body[data-theme="prestige"] .hero-content { position: relative; z-index: 1; padding-left: 10vw; max-width: 800px; }
+body[data-theme="prestige"] .hero h2 { font-size: 4.5rem; font-weight: 400; color: #fff; margin-bottom: 30px; line-height: 1.1; }
+body[data-theme="prestige"] .hero p { font-size: 1.1rem; color: #ccc; margin-bottom: 40px; line-height: 1.8; letter-spacing: 1px; }
+body[data-theme="prestige"] .btn-cta { background: #cda873; color: #0a0a0a; padding: 15px 40px; text-decoration: none; text-transform: uppercase; font-size: 12px; letter-spacing: 2px; display: inline-block; }
+body[data-theme="prestige"] .hero-visual { display: none; }
+body[data-theme="prestige"] .services { padding: 120px 10vw; }
+body[data-theme="prestige"] .section-title { text-align: center; margin-bottom: 80px; }
+body[data-theme="prestige"] .section-title h2 { font-size: 3.5rem; color: #cda873; font-style: italic; font-weight: 400; }
+body[data-theme="prestige"] .services-grid { display: flex; flex-direction: column; gap: 30px; }
+body[data-theme="prestige"] .card { display: flex; align-items: center; background: #111; padding: 50px; border: 1px solid #222; }
+body[data-theme="prestige"] .card-icon { font-size: 40px; width: 10%; opacity: 0.5; }
+body[data-theme="prestige"] .card h3 { font-size: 2.2rem; width: 30%; color: #fff; font-weight: 400; }
+body[data-theme="prestige"] .card p { width: 60%; color: #888; font-size: 1rem; line-height: 1.8; }
+body[data-theme="prestige"] footer { background: #000; padding: 80px 10vw; border-top: 1px solid #222; }
+body[data-theme="prestige"] .footer-content { display: flex; justify-content: space-between; }
+
+/* =========================================
+   THEME 4 : ARCHITECTE / GALERIE (Menu Latéral)
+   ========================================= */
+body[data-theme="galerie"] { background-color: #fafafa; color: #333; font-family: 'Inter', sans-serif; padding-bottom: 60px; }
+body[data-theme="galerie"] .site-wrapper { display: flex; min-height: 100vh; }
+body[data-theme="galerie"] .site-header { width: 280px; height: 100vh; position: fixed; left: 0; top: 0; background: #fff; border-right: 1px solid #eaeaea; display: flex; flex-direction: column; padding: 60px 40px; z-index: 10; }
+body[data-theme="galerie"] .logo { font-size: 28px; font-weight: 300; letter-spacing: 5px; margin-bottom: 80px; }
+body[data-theme="galerie"] .site-nav { display: flex; flex-direction: column; gap: 30px; }
+body[data-theme="galerie"] .site-nav a { text-decoration: none; color: #888; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; }
+body[data-theme="galerie"] .main-content { margin-left: 280px; width: calc(100% - 280px); display: flex; flex-direction: column; }
+body[data-theme="galerie"] .hero { display: flex; align-items: stretch; min-height: 80vh; background: #fff; border-bottom: 1px solid #eaeaea; }
+body[data-theme="galerie"] .hero-content { flex: 1; padding: 10vw 5vw; display: flex; flex-direction: column; justify-content: center; }
+body[data-theme="galerie"] .hero h2 { font-size: 4.5rem; font-weight: 300; line-height: 1.1; margin-bottom: 30px; }
+body[data-theme="galerie"] .hero p { font-size: 1.1rem; color: #666; margin-bottom: 40px; max-width: 500px; }
+body[data-theme="galerie"] .btn-cta { border-bottom: 2px solid #000; padding-bottom: 5px; color: #000; text-decoration: none; text-transform: uppercase; font-size: 12px; letter-spacing: 2px; align-self: flex-start; }
+body[data-theme="galerie"] .hero-visual { flex: 1; background: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80') center/cover no-repeat; }
+body[data-theme="galerie"] .services { padding: 100px 5vw; background: #fafafa; }
+body[data-theme="galerie"] .section-title { margin-bottom: 60px; }
+body[data-theme="galerie"] .section-title h2 { font-size: 2rem; font-weight: 300; }
+body[data-theme="galerie"] .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: #eaeaea; border: 1px solid #eaeaea; }
+body[data-theme="galerie"] .card { background: #fff; padding: 60px 40px; text-align: center; }
+body[data-theme="galerie"] .card-icon { font-size: 30px; margin-bottom: 20px; filter: grayscale(100%); }
+body[data-theme="galerie"] .card h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+body[data-theme="galerie"] footer { padding: 50px 5vw; background: #fff; border-top: 1px solid #eaeaea; }
+body[data-theme="galerie"] .footer-content { display: flex; gap: 100px; }
+
+/* =========================================
+   THEME 5 : BRUTALISTE / INDUSTRIEL
+   ========================================= */
+body[data-theme="industriel"] { background-color: #f4f4f0; color: #000; font-family: 'Space Grotesk', sans-serif; padding-bottom: 60px; }
+body[data-theme="industriel"] .site-wrapper { display: block; }
+body[data-theme="industriel"] .site-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5vw; background: #ccff00; border-bottom: 4px solid #000; }
+body[data-theme="industriel"] .logo { font-size: 32px; font-weight: 700; text-transform: uppercase; }
+body[data-theme="industriel"] .site-nav a { margin-left: 25px; text-decoration: none; color: #000; font-weight: 700; font-size: 16px; border: 2px solid transparent; padding: 5px 10px; }
+body[data-theme="industriel"] .hero { display: flex; padding: 0; border-bottom: 4px solid #000; min-height: 80vh; align-items: stretch; }
+body[data-theme="industriel"] .hero-content { flex: 1; padding: 8vw 5vw; background: #fff; border-right: 4px solid #000; display: flex; flex-direction: column; justify-content: center; }
+body[data-theme="industriel"] .hero h2 { font-size: 5.5rem; text-transform: uppercase; line-height: 0.9; margin-bottom: 30px; }
+body[data-theme="industriel"] .hero p { font-size: 1.2rem; margin-bottom: 40px; font-weight: 600; }
+body[data-theme="industriel"] .btn-cta { background: #000; color: #ccff00; padding: 20px 40px; text-decoration: none; font-weight: 700; display: inline-block; font-size: 1.2rem; box-shadow: 8px 8px 0px #ccc; align-self: flex-start; }
+body[data-theme="industriel"] .hero-visual { flex: 1; background: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; filter: contrast(1.2) grayscale(0.2); }
+body[data-theme="industriel"] .services { padding: 100px 5vw; background: #f4f4f0; }
+body[data-theme="industriel"] .section-title { margin-bottom: 60px; }
+body[data-theme="industriel"] .section-title h2 { font-size: 4rem; text-transform: uppercase; background: #ccff00; display: inline-block; padding: 10px 20px; border: 4px solid #000; }
+body[data-theme="industriel"] .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+body[data-theme="industriel"] .card { background: #fff; padding: 40px; border: 4px solid #000; box-shadow: 12px 12px 0px #000; }
+body[data-theme="industriel"] .card-icon { font-size: 50px; margin-bottom: 20px; }
+body[data-theme="industriel"] .card h3 { font-size: 2rem; text-transform: uppercase; margin-bottom: 15px; border-bottom: 4px solid #000; padding-bottom: 10px; }
+body[data-theme="industriel"] footer { background: #000; color: #fff; padding: 60px 5vw; border-top: 4px solid #ccff00; }
+body[data-theme="industriel"] .footer-content { display: flex; justify-content: space-between; }
+
+/* =========================================
+   THEME 6 : ORGANIQUE / ZEN (Courbes)
+   ========================================= */
+body[data-theme="organique"] { background-color: #f9f8f4; color: #4a5d4e; font-family: 'Quicksand', sans-serif; padding-bottom: 60px; }
+body[data-theme="organique"] .site-wrapper { display: block; }
+body[data-theme="organique"] .site-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5vw; background: transparent; position: absolute; width: 100%; z-index: 10; }
+body[data-theme="organique"] .logo { font-size: 28px; font-weight: 700; color: #2c3a2f; }
+body[data-theme="organique"] .site-nav { background: rgba(255,255,255,0.8); padding: 15px 35px; border-radius: 50px; backdrop-filter: blur(10px); }
+body[data-theme="organique"] .site-nav a { margin: 0 15px; text-decoration: none; color: #4a5d4e; font-weight: 700; }
+body[data-theme="organique"] .hero { background: #e3e8de; border-radius: 0 0 50% 50% / 10vw; padding: 180px 5vw 120px 5vw; display: flex; flex-direction: column; align-items: center; text-align: center; }
+body[data-theme="organique"] .hero-content { max-width: 800px; margin-bottom: 60px; }
+body[data-theme="organique"] .hero h2 { font-size: 4rem; color: #2c3a2f; margin-bottom: 25px; font-weight: 700; line-height: 1.1; }
+body[data-theme="organique"] .hero p { font-size: 1.2rem; margin-bottom: 40px; font-weight: 500; }
+body[data-theme="organique"] .btn-cta { background: #8a9a86; color: #fff; padding: 18px 45px; text-decoration: none; border-radius: 50px; font-weight: 700; display: inline-block; }
+body[data-theme="organique"] .hero-visual { width: 80%; height: 500px; background: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80') center/cover no-repeat; border-radius: 50px; box-shadow: 0 30px 60px rgba(74, 93, 78, 0.15); margin-top: -100px; position: relative; z-index: 2; }
+body[data-theme="organique"] .services { padding: 150px 5vw 100px; }
+body[data-theme="organique"] .section-title { text-align: center; margin-bottom: 70px; }
+body[data-theme="organique"] .section-title h2 { font-size: 3rem; color: #2c3a2f; }
+body[data-theme="organique"] .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+body[data-theme="organique"] .card { background: #fff; padding: 50px 40px; border-radius: 40px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.03); }
+body[data-theme="organique"] .card-icon { font-size: 50px; margin-bottom: 25px; }
+body[data-theme="organique"] .card h3 { font-size: 1.8rem; color: #2c3a2f; margin-bottom: 15px; }
+body[data-theme="organique"] footer { background: #2c3a2f; color: #e3e8de; padding: 80px 5vw; border-radius: 60px 60px 0 0; }
+body[data-theme="organique"] .footer-content { display: flex; justify-content: space-around; }
+
+/* =========================================
+   THEME 7 : CLASSIQUE / CORPORATE
+   ========================================= */
+body[data-theme="classique"] { background-color: #f8f9fa; color: #333; font-family: 'Inter', sans-serif; padding-bottom: 60px; }
+body[data-theme="classique"] h1, body[data-theme="classique"] h2, body[data-theme="classique"] h3 { font-family: 'Lora', serif; color: #1a365d; }
+body[data-theme="classique"] .site-wrapper { display: block; }
+body[data-theme="classique"] .site-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 10vw; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: relative; z-index: 100; }
+body[data-theme="classique"] .logo { font-size: 26px; font-weight: 700; color: #1a365d; font-family: 'Lora', serif; }
+body[data-theme="classique"] .site-nav a { margin-left: 30px; text-decoration: none; color: #4a5568; font-weight: 600; transition: color 0.2s; }
+body[data-theme="classique"] .site-nav a:hover { color: #2b6cb0; }
+body[data-theme="classique"] .hero { text-align: center; padding: 120px 20px; background: linear-gradient(rgba(26, 54, 93, 0.85), rgba(26, 54, 93, 0.85)), url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; color: white; }
+body[data-theme="classique"] .hero-visual { display: none; }
+body[data-theme="classique"] .hero-content { max-width: 700px; margin: 0 auto; }
+body[data-theme="classique"] .hero h2 { font-size: 3.5rem; margin-bottom: 20px; color: #fff; line-height: 1.2; }
+body[data-theme="classique"] .hero p { font-size: 1.1rem; margin-bottom: 40px; line-height: 1.6; color: #e2e8f0; }
+body[data-theme="classique"] .btn-cta { background: #2b6cb0; color: #fff; padding: 15px 35px; text-decoration: none; border-radius: 4px; font-weight: 600; display: inline-block; transition: background 0.2s; }
+body[data-theme="classique"] .btn-cta:hover { background: #1a365d; }
+body[data-theme="classique"] .services { padding: 80px 10vw; text-align: center; }
+body[data-theme="classique"] .section-title h2 { font-size: 2.5rem; margin-bottom: 50px; position: relative; padding-bottom: 15px; }
+body[data-theme="classique"] .section-title h2::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: #2b6cb0; }
+body[data-theme="classique"] .services-grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; }
+body[data-theme="classique"] .card { background: #fff; padding: 40px 30px; border-radius: 8px; flex: 1; min-width: 300px; max-width: 380px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #edf2f7; transition: transform 0.2s; }
+body[data-theme="classique"] .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
+body[data-theme="classique"] .card-icon { font-size: 40px; margin-bottom: 20px; }
+body[data-theme="classique"] .card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+body[data-theme="classique"] footer { background: #1a202c; color: #a0aec0; padding: 60px 10vw 20px; text-align: left; }
+body[data-theme="classique"] .footer-content { display: flex; justify-content: space-between; border-bottom: 1px solid #2d3748; padding-bottom: 40px; margin-bottom: 20px; }
+body[data-theme="classique"] .footer-col h4 { color: #fff; margin-bottom: 15px; }
+
+/* =========================================
+   RESPONSIVE GLOBAL (Mobiles & Tablettes)
+   ========================================= */
+@media (max-width: 1024px) {
+    body[data-theme="galerie"] .site-wrapper { flex-direction: column; }
+    body[data-theme="galerie"] .site-header { width: 100%; height: auto; position: relative; flex-direction: row; justify-content: space-between; padding: 20px 5vw; border-right: none; border-bottom: 1px solid #eaeaea; }
+    body[data-theme="galerie"] .logo { margin-bottom: 0; }
+    body[data-theme="galerie"] .site-nav { flex-direction: row; gap: 15px; }
+    body[data-theme="galerie"] .main-content { margin-left: 0; width: 100%; }
+    
+    body[data-theme="moderne"] .hero, 
+    body[data-theme="industriel"] .hero,
+    body[data-theme="galerie"] .hero { grid-template-columns: 1fr; flex-direction: column; }
+    
+    body[data-theme="moderne"] .hero-visual,
+    body[data-theme="industriel"] .hero-visual,
+    body[data-theme="galerie"] .hero-visual { min-height: 400px; width: 100%; border-radius: 0; }
+    
+    body[data-theme="prestige"] .card { flex-direction: column; text-align: center; }
+    body[data-theme="prestige"] .card h3, body[data-theme="prestige"] .card p { width: 100%; margin-top: 15px; }
+    
+    body[data-theme="organique"] .hero-visual { width: 95%; height: 350px; }
+    
+    body[data-theme="classique"] .footer-content { flex-direction: column; gap: 30px; }
+}

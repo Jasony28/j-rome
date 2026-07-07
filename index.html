@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Démonstration - Menuiserie & Carrelage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Roboto+Slab:wght@400;700&family=Space+Grotesk:wght@600;700&family=Quicksand:wght@500;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="moderne">
+
+    <div class="demo-bar">
+        <h3>Styles :</h3>
+        <button class="active" onclick="changeTheme('moderne', this)">1. Moderne</button>
+        <button onclick="changeTheme('authentique', this)">2. Artisan</button>
+        <button onclick="changeTheme('prestige', this)">3. Luxe</button>
+        <button onclick="changeTheme('galerie', this)">4. Architecte (Latéral)</button>
+        <button onclick="changeTheme('industriel', this)">5. Brutaliste</button>
+        <button onclick="changeTheme('organique', this)">6. Organique/Zen</button>
+        <button onclick="changeTheme('classique', this)">7. Classique / Pro</button>
+    </div>
+
+    <div class="site-wrapper">
+        <header class="site-header">
+            <div class="logo">B&C</div>
+            <nav class="site-nav">
+                <a href="#">Accueil</a>
+                <a href="#">Expertise</a>
+                <a href="#">Projets</a>
+                <a href="#">Contact</a>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <section class="hero">
+                <div class="hero-content">
+                    <h2>L'Excellence du Bois et de la Céramique</h2>
+                    <p>Nous transformons vos espaces avec des matériaux nobles et un savoir-faire incomparable. Du parquet massif au carrelage grand format.</p>
+                    <a href="#" class="btn-cta">Découvrir nos projets</a>
+                </div>
+                <div class="hero-visual"></div>
+            </section>
+
+            <section class="services">
+                <div class="section-title">
+                    <h2>Nos Prestations</h2>
+                </div>
+                <div class="services-grid">
+                    <div class="card">
+                        <div class="card-icon">🪵</div>
+                        <h3>Menuiserie</h3>
+                        <p>Aménagement sur mesure, dressing, pose de parquet et conception d'escaliers. Un travail minutieux adapté à votre intérieur.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🪨</div>
+                        <h3>Carrelage</h3>
+                        <p>Pose de pierres naturelles, faïence, mosaïque et dalles extérieures. Des finitions impeccables pour une durabilité maximale.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">📐</div>
+                        <h3>Rénovation Globale</h3>
+                        <p>Gestion complète de votre projet de salle de bain ou de cuisine, coordonnant la menuiserie et le revêtement de sol.</p>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <div class="footer-content">
+                    <div class="footer-col">
+                        <h4>B&C Menuiserie</h4>
+                        <p>Artisans qualifiés depuis 15 ans.</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Contact</h4>
+                        <p>contact@bc-artisan.fr<br>01 23 45 67 89</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2026 Bois & Céramique - Design Démo</p>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
