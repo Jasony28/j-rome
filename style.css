@@ -4,197 +4,338 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { transition: background-color 0.4s ease, color 0.4s ease; overflow-x: hidden; }
 
-/* BARRE DE DEMO */
+/* BARRE DE DEMO (Adaptée pour beaucoup de boutons) */
 .demo-bar {
-    background-color: #111; color: white; padding: 12px; text-align: center;
+    background-color: #111; color: white; padding: 10px 15px; text-align: left;
     position: fixed; bottom: 0; left: 0; width: 100%; z-index: 10000; font-family: sans-serif;
-    display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px;
+    display: flex; align-items: center; overflow-x: auto; white-space: nowrap;
     box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
 }
-.demo-bar h3 { font-size: 14px; margin: 0; color: #aaa; font-weight: normal; }
+.demo-bar::-webkit-scrollbar { height: 6px; }
+.demo-bar::-webkit-scrollbar-thumb { background: #555; border-radius: 10px; }
+.demo-title { font-size: 13px; color: #aaa; margin-right: 15px; font-weight: bold; }
 .demo-bar button {
-    background: #333; color: white; border: none; padding: 8px 12px; 
-    cursor: pointer; border-radius: 4px; transition: 0.2s; font-size: 12px;
+    background: #333; color: white; border: none; padding: 8px 15px; margin-right: 8px;
+    cursor: pointer; border-radius: 4px; transition: 0.2s; font-size: 12px; flex-shrink: 0;
 }
 .demo-bar button:hover, .demo-bar button.active { background: #fff; color: #111; font-weight: bold; }
 
+/* Variables d'images communes */
+:root {
+    --bg-img-1: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80');
+    --bg-img-2: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1600&q=80');
+    --bg-img-3: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80');
+}
+
 /* =========================================
-   THEME 1 : MODERNE / STARTUP (Asymétrique)
+   THÈMES ORIGINAUX (1 à 7) - Raccourcis pour l'espace
    ========================================= */
-body[data-theme="moderne"] { background-color: #ffffff; color: #2b2b2b; font-family: 'Inter', sans-serif; padding-bottom: 60px; }
-body[data-theme="moderne"] .site-wrapper { display: block; }
-body[data-theme="moderne"] .site-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5vw; background: #fff; border-bottom: 1px solid #eaeaea; }
+/* 1. Moderne */
+body[data-theme="moderne"] { background: #fff; color: #2b2b2b; font-family: 'Inter', sans-serif; padding-bottom: 60px; }
+body[data-theme="moderne"] .site-header { display: flex; justify-content: space-between; padding: 20px 5vw; border-bottom: 1px solid #eaeaea; }
 body[data-theme="moderne"] .logo { font-size: 24px; font-weight: 700; color: #0056b3; }
 body[data-theme="moderne"] .site-nav a { margin-left: 30px; text-decoration: none; color: #555; font-weight: 600; font-size: 14px; text-transform: uppercase; }
 body[data-theme="moderne"] .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 80vh; align-items: center; }
 body[data-theme="moderne"] .hero-content { padding: 10vw 5vw; }
-body[data-theme="moderne"] .hero h2 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; font-weight: 700; color: #111; }
-body[data-theme="moderne"] .hero p { font-size: 1.1rem; color: #666; margin-bottom: 30px; line-height: 1.6; }
+body[data-theme="moderne"] .hero h2 { font-size: 3.5rem; margin-bottom: 20px; font-weight: 700; }
+body[data-theme="moderne"] .hero p { margin-bottom: 30px; line-height: 1.6; }
 body[data-theme="moderne"] .btn-cta { background: #0056b3; color: #fff; padding: 15px 30px; text-decoration: none; border-radius: 50px; font-weight: 600; display: inline-block; }
-body[data-theme="moderne"] .hero-visual { height: 100%; min-height: 500px; background: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80') center/cover no-repeat; border-bottom-left-radius: 80px; }
+body[data-theme="moderne"] .hero-visual { height: 100%; min-height: 500px; background: var(--bg-img-1) center/cover; border-bottom-left-radius: 80px; }
 body[data-theme="moderne"] .services { padding: 80px 5vw; background: #f8f9fc; }
 body[data-theme="moderne"] .section-title h2 { font-size: 2.5rem; color: #0056b3; margin-bottom: 40px; }
 body[data-theme="moderne"] .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 body[data-theme="moderne"] .card { background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border-top: 4px solid #0056b3; }
-body[data-theme="moderne"] .card-icon { font-size: 40px; margin-bottom: 20px; }
-body[data-theme="moderne"] .card h3 { font-size: 1.5rem; margin-bottom: 15px; color: #111; }
 body[data-theme="moderne"] footer { background: #1a1a1a; color: #fff; padding: 60px 5vw 20px; }
-body[data-theme="moderne"] .footer-content { display: flex; justify-content: space-between; margin-bottom: 40px; }
 
-/* =========================================
-   THEME 2 : ARTISAN / TRADITION (Centré)
-   ========================================= */
-body[data-theme="authentique"] { background-color: #f4f1ea; color: #3e362e; font-family: 'Roboto Slab', serif; padding-bottom: 60px; }
-body[data-theme="authentique"] .site-wrapper { display: block; }
+/* 2. Authentique */
+body[data-theme="authentique"] { background: #f4f1ea; color: #3e362e; font-family: 'Roboto Slab', serif; padding-bottom: 60px; }
 body[data-theme="authentique"] .site-header { display: flex; flex-direction: column; align-items: center; padding: 30px 20px; background: #4a3f35; color: #f4f1ea; }
 body[data-theme="authentique"] .logo { font-size: 32px; font-weight: 700; margin-bottom: 15px; border-bottom: 2px solid #d35400; padding-bottom: 5px; }
 body[data-theme="authentique"] .site-nav { display: flex; gap: 25px; }
 body[data-theme="authentique"] .site-nav a { text-decoration: none; color: #e0dcd3; font-weight: 400; }
-body[data-theme="authentique"] .hero { position: relative; text-align: center; color: white; padding: 150px 5vw; background: linear-gradient(rgba(74, 63, 53, 0.8), rgba(74, 63, 53, 0.8)), url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; }
+body[data-theme="authentique"] .hero { text-align: center; color: white; padding: 150px 5vw; background: linear-gradient(rgba(74, 63, 53, 0.8), rgba(74, 63, 53, 0.8)), var(--bg-img-2) center/cover; }
 body[data-theme="authentique"] .hero-visual { display: none; }
-body[data-theme="authentique"] .hero-content { max-width: 800px; margin: 0 auto; }
 body[data-theme="authentique"] .hero h2 { font-size: 4rem; margin-bottom: 25px; }
-body[data-theme="authentique"] .hero p { font-size: 1.2rem; margin-bottom: 40px; line-height: 1.6; }
-body[data-theme="authentique"] .btn-cta { background: transparent; color: white; border: 2px solid #d35400; padding: 12px 35px; text-decoration: none; font-weight: bold; text-transform: uppercase; }
+body[data-theme="authentique"] .btn-cta { border: 2px solid #d35400; color: white; padding: 12px 35px; text-decoration: none; font-weight: bold; text-transform: uppercase; }
 body[data-theme="authentique"] .services { padding: 80px 5vw; text-align: center; }
-body[data-theme="authentique"] .section-title h2 { font-size: 2.5rem; margin-bottom: 50px; border-bottom: 3px solid #d35400; display: inline-block; padding-bottom: 10px; }
+body[data-theme="authentique"] .section-title h2 { border-bottom: 3px solid #d35400; display: inline-block; margin-bottom: 40px; }
 body[data-theme="authentique"] .services-grid { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; }
-body[data-theme="authentique"] .card { background: #fff; padding: 40px 30px; border: 1px solid #dcd7cc; flex: 1; min-width: 300px; max-width: 400px; box-shadow: 6px 6px 0px #4a3f35; }
-body[data-theme="authentique"] .card-icon { font-size: 45px; margin-bottom: 20px; }
-body[data-theme="authentique"] .card h3 { font-size: 1.6rem; color: #d35400; margin-bottom: 15px; }
+body[data-theme="authentique"] .card { background: #fff; padding: 40px 30px; border: 1px solid #dcd7cc; box-shadow: 6px 6px 0px #4a3f35; max-width: 350px; }
 body[data-theme="authentique"] footer { background: #2c251f; color: #e0dcd3; padding: 50px 5vw; text-align: center; }
-body[data-theme="authentique"] .footer-content { display: flex; flex-direction: column; gap: 20px; }
 
-/* =========================================
-   THEME 3 : LUXE / PRESTIGE (Sombre)
-   ========================================= */
-body[data-theme="prestige"] { background-color: #0a0a0a; color: #f0f0f0; font-family: 'Inter', sans-serif; padding-bottom: 60px; }
-body[data-theme="prestige"] .site-wrapper { display: block; }
+/* 3. Luxe */
+body[data-theme="prestige"] { background: #0a0a0a; color: #f0f0f0; font-family: 'Inter', sans-serif; padding-bottom: 60px; }
 body[data-theme="prestige"] h2, body[data-theme="prestige"] h3 { font-family: 'Playfair Display', serif; }
-body[data-theme="prestige"] .site-header { display: flex; justify-content: center; align-items: center; padding: 40px 5vw; position: absolute; width: 100%; z-index: 10; border-bottom: 1px solid rgba(255,255,255,0.1); }
-body[data-theme="prestige"] .logo { position: absolute; left: 5vw; font-size: 22px; color: #cda873; text-transform: uppercase; letter-spacing: 4px; }
-body[data-theme="prestige"] .site-nav a { color: #fff; text-decoration: none; margin: 0 25px; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
-body[data-theme="prestige"] .hero { display: flex; align-items: center; min-height: 100vh; background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; position: relative; }
-body[data-theme="prestige"] .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, #0a0a0a 30%, rgba(10,10,10,0.4)); }
-body[data-theme="prestige"] .hero-content { position: relative; z-index: 1; padding-left: 10vw; max-width: 800px; }
-body[data-theme="prestige"] .hero h2 { font-size: 4.5rem; font-weight: 400; color: #fff; margin-bottom: 30px; line-height: 1.1; }
-body[data-theme="prestige"] .hero p { font-size: 1.1rem; color: #ccc; margin-bottom: 40px; line-height: 1.8; letter-spacing: 1px; }
-body[data-theme="prestige"] .btn-cta { background: #cda873; color: #0a0a0a; padding: 15px 40px; text-decoration: none; text-transform: uppercase; font-size: 12px; letter-spacing: 2px; display: inline-block; }
+body[data-theme="prestige"] .site-header { display: flex; justify-content: center; padding: 40px 5vw; position: absolute; width: 100%; z-index: 10; border-bottom: 1px solid rgba(255,255,255,0.1); }
+body[data-theme="prestige"] .logo { position: absolute; left: 5vw; color: #cda873; letter-spacing: 4px; }
+body[data-theme="prestige"] .site-nav a { color: #fff; text-decoration: none; margin: 0 25px; text-transform: uppercase; font-size: 12px; letter-spacing: 2px; }
+body[data-theme="prestige"] .hero { display: flex; align-items: center; min-height: 100vh; background: linear-gradient(to right, #0a0a0a 30%, rgba(10,10,10,0.4)), var(--bg-img-3) center/cover; padding-left: 10vw; }
 body[data-theme="prestige"] .hero-visual { display: none; }
+body[data-theme="prestige"] .hero h2 { font-size: 4.5rem; color: #fff; line-height: 1.1; }
+body[data-theme="prestige"] .btn-cta { background: #cda873; color: #0a0a0a; padding: 15px 40px; text-decoration: none; text-transform: uppercase; font-size: 12px; letter-spacing: 2px; display: inline-block; margin-top: 20px;}
 body[data-theme="prestige"] .services { padding: 120px 10vw; }
-body[data-theme="prestige"] .section-title { text-align: center; margin-bottom: 80px; }
-body[data-theme="prestige"] .section-title h2 { font-size: 3.5rem; color: #cda873; font-style: italic; font-weight: 400; }
+body[data-theme="prestige"] .section-title { text-align: center; margin-bottom: 80px; color: #cda873; }
 body[data-theme="prestige"] .services-grid { display: flex; flex-direction: column; gap: 30px; }
 body[data-theme="prestige"] .card { display: flex; align-items: center; background: #111; padding: 50px; border: 1px solid #222; }
 body[data-theme="prestige"] .card-icon { font-size: 40px; width: 10%; opacity: 0.5; }
-body[data-theme="prestige"] .card h3 { font-size: 2.2rem; width: 30%; color: #fff; font-weight: 400; }
-body[data-theme="prestige"] .card p { width: 60%; color: #888; font-size: 1rem; line-height: 1.8; }
+body[data-theme="prestige"] .card h3 { width: 30%; font-size: 2.2rem; }
+body[data-theme="prestige"] .card p { width: 60%; }
 body[data-theme="prestige"] footer { background: #000; padding: 80px 10vw; border-top: 1px solid #222; }
-body[data-theme="prestige"] .footer-content { display: flex; justify-content: space-between; }
 
-/* =========================================
-   THEME 4 : ARCHITECTE / GALERIE (Menu Latéral)
-   ========================================= */
-body[data-theme="galerie"] { background-color: #fafafa; color: #333; font-family: 'Inter', sans-serif; padding-bottom: 60px; }
+/* 4. Architecte (Latéral) */
+body[data-theme="galerie"] { background: #fafafa; color: #333; font-family: 'Inter', sans-serif; padding-bottom: 60px; }
 body[data-theme="galerie"] .site-wrapper { display: flex; min-height: 100vh; }
-body[data-theme="galerie"] .site-header { width: 280px; height: 100vh; position: fixed; left: 0; top: 0; background: #fff; border-right: 1px solid #eaeaea; display: flex; flex-direction: column; padding: 60px 40px; z-index: 10; }
+body[data-theme="galerie"] .site-header { width: 280px; height: 100vh; position: fixed; left: 0; background: #fff; border-right: 1px solid #eaeaea; display: flex; flex-direction: column; padding: 60px 40px; }
 body[data-theme="galerie"] .logo { font-size: 28px; font-weight: 300; letter-spacing: 5px; margin-bottom: 80px; }
 body[data-theme="galerie"] .site-nav { display: flex; flex-direction: column; gap: 30px; }
-body[data-theme="galerie"] .site-nav a { text-decoration: none; color: #888; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; }
-body[data-theme="galerie"] .main-content { margin-left: 280px; width: calc(100% - 280px); display: flex; flex-direction: column; }
-body[data-theme="galerie"] .hero { display: flex; align-items: stretch; min-height: 80vh; background: #fff; border-bottom: 1px solid #eaeaea; }
+body[data-theme="galerie"] .site-nav a { text-decoration: none; color: #888; font-size: 13px; text-transform: uppercase; }
+body[data-theme="galerie"] .main-content { margin-left: 280px; width: calc(100% - 280px); }
+body[data-theme="galerie"] .hero { display: flex; min-height: 80vh; background: #fff; border-bottom: 1px solid #eaeaea; }
 body[data-theme="galerie"] .hero-content { flex: 1; padding: 10vw 5vw; display: flex; flex-direction: column; justify-content: center; }
 body[data-theme="galerie"] .hero h2 { font-size: 4.5rem; font-weight: 300; line-height: 1.1; margin-bottom: 30px; }
-body[data-theme="galerie"] .hero p { font-size: 1.1rem; color: #666; margin-bottom: 40px; max-width: 500px; }
-body[data-theme="galerie"] .btn-cta { border-bottom: 2px solid #000; padding-bottom: 5px; color: #000; text-decoration: none; text-transform: uppercase; font-size: 12px; letter-spacing: 2px; align-self: flex-start; }
-body[data-theme="galerie"] .hero-visual { flex: 1; background: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80') center/cover no-repeat; }
+body[data-theme="galerie"] .btn-cta { border-bottom: 2px solid #000; padding-bottom: 5px; color: #000; text-decoration: none; text-transform: uppercase; align-self: flex-start; }
+body[data-theme="galerie"] .hero-visual { flex: 1; background: var(--bg-img-1) center/cover; }
 body[data-theme="galerie"] .services { padding: 100px 5vw; background: #fafafa; }
-body[data-theme="galerie"] .section-title { margin-bottom: 60px; }
-body[data-theme="galerie"] .section-title h2 { font-size: 2rem; font-weight: 300; }
-body[data-theme="galerie"] .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: #eaeaea; border: 1px solid #eaeaea; }
+body[data-theme="galerie"] .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: #eaeaea; border: 1px solid #eaeaea; margin-top: 40px;}
 body[data-theme="galerie"] .card { background: #fff; padding: 60px 40px; text-align: center; }
-body[data-theme="galerie"] .card-icon { font-size: 30px; margin-bottom: 20px; filter: grayscale(100%); }
-body[data-theme="galerie"] .card h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
 body[data-theme="galerie"] footer { padding: 50px 5vw; background: #fff; border-top: 1px solid #eaeaea; }
-body[data-theme="galerie"] .footer-content { display: flex; gap: 100px; }
 
-/* =========================================
-   THEME 5 : BRUTALISTE / INDUSTRIEL
-   ========================================= */
-body[data-theme="industriel"] { background-color: #f4f4f0; color: #000; font-family: 'Space Grotesk', sans-serif; padding-bottom: 60px; }
-body[data-theme="industriel"] .site-wrapper { display: block; }
-body[data-theme="industriel"] .site-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5vw; background: #ccff00; border-bottom: 4px solid #000; }
+/* 5. Brutaliste */
+body[data-theme="industriel"] { background: #f4f4f0; color: #000; font-family: 'Space Grotesk', sans-serif; padding-bottom: 60px; }
+body[data-theme="industriel"] .site-header { display: flex; justify-content: space-between; padding: 20px 5vw; background: #ccff00; border-bottom: 4px solid #000; }
 body[data-theme="industriel"] .logo { font-size: 32px; font-weight: 700; text-transform: uppercase; }
-body[data-theme="industriel"] .site-nav a { margin-left: 25px; text-decoration: none; color: #000; font-weight: 700; font-size: 16px; border: 2px solid transparent; padding: 5px 10px; }
-body[data-theme="industriel"] .hero { display: flex; padding: 0; border-bottom: 4px solid #000; min-height: 80vh; align-items: stretch; }
+body[data-theme="industriel"] .site-nav a { text-decoration: none; color: #000; font-weight: 700; border: 2px solid transparent; padding: 5px 10px; margin-left: 10px;}
+body[data-theme="industriel"] .hero { display: flex; border-bottom: 4px solid #000; min-height: 80vh; }
 body[data-theme="industriel"] .hero-content { flex: 1; padding: 8vw 5vw; background: #fff; border-right: 4px solid #000; display: flex; flex-direction: column; justify-content: center; }
 body[data-theme="industriel"] .hero h2 { font-size: 5.5rem; text-transform: uppercase; line-height: 0.9; margin-bottom: 30px; }
-body[data-theme="industriel"] .hero p { font-size: 1.2rem; margin-bottom: 40px; font-weight: 600; }
-body[data-theme="industriel"] .btn-cta { background: #000; color: #ccff00; padding: 20px 40px; text-decoration: none; font-weight: 700; display: inline-block; font-size: 1.2rem; box-shadow: 8px 8px 0px #ccc; align-self: flex-start; }
-body[data-theme="industriel"] .hero-visual { flex: 1; background: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; filter: contrast(1.2) grayscale(0.2); }
-body[data-theme="industriel"] .services { padding: 100px 5vw; background: #f4f4f0; }
-body[data-theme="industriel"] .section-title { margin-bottom: 60px; }
+body[data-theme="industriel"] .btn-cta { background: #000; color: #ccff00; padding: 20px 40px; text-decoration: none; font-weight: 700; display: inline-block; box-shadow: 8px 8px 0px #ccc; align-self: flex-start; }
+body[data-theme="industriel"] .hero-visual { flex: 1; background: var(--bg-img-2) center/cover; filter: contrast(1.2) grayscale(0.2); }
+body[data-theme="industriel"] .services { padding: 100px 5vw; }
 body[data-theme="industriel"] .section-title h2 { font-size: 4rem; text-transform: uppercase; background: #ccff00; display: inline-block; padding: 10px 20px; border: 4px solid #000; }
-body[data-theme="industriel"] .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+body[data-theme="industriel"] .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 40px; }
 body[data-theme="industriel"] .card { background: #fff; padding: 40px; border: 4px solid #000; box-shadow: 12px 12px 0px #000; }
-body[data-theme="industriel"] .card-icon { font-size: 50px; margin-bottom: 20px; }
-body[data-theme="industriel"] .card h3 { font-size: 2rem; text-transform: uppercase; margin-bottom: 15px; border-bottom: 4px solid #000; padding-bottom: 10px; }
 body[data-theme="industriel"] footer { background: #000; color: #fff; padding: 60px 5vw; border-top: 4px solid #ccff00; }
-body[data-theme="industriel"] .footer-content { display: flex; justify-content: space-between; }
 
-/* =========================================
-   THEME 6 : ORGANIQUE / ZEN (Courbes)
-   ========================================= */
-body[data-theme="organique"] { background-color: #f9f8f4; color: #4a5d4e; font-family: 'Quicksand', sans-serif; padding-bottom: 60px; }
-body[data-theme="organique"] .site-wrapper { display: block; }
-body[data-theme="organique"] .site-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5vw; background: transparent; position: absolute; width: 100%; z-index: 10; }
+/* 6. Organique */
+body[data-theme="organique"] { background: #f9f8f4; color: #4a5d4e; font-family: 'Quicksand', sans-serif; padding-bottom: 60px; }
+body[data-theme="organique"] .site-header { display: flex; justify-content: space-between; padding: 20px 5vw; position: absolute; width: 100%; z-index: 10; }
 body[data-theme="organique"] .logo { font-size: 28px; font-weight: 700; color: #2c3a2f; }
 body[data-theme="organique"] .site-nav { background: rgba(255,255,255,0.8); padding: 15px 35px; border-radius: 50px; backdrop-filter: blur(10px); }
-body[data-theme="organique"] .site-nav a { margin: 0 15px; text-decoration: none; color: #4a5d4e; font-weight: 700; }
+body[data-theme="organique"] .site-nav a { text-decoration: none; color: #4a5d4e; font-weight: 700; margin: 0 10px; }
 body[data-theme="organique"] .hero { background: #e3e8de; border-radius: 0 0 50% 50% / 10vw; padding: 180px 5vw 120px 5vw; display: flex; flex-direction: column; align-items: center; text-align: center; }
 body[data-theme="organique"] .hero-content { max-width: 800px; margin-bottom: 60px; }
-body[data-theme="organique"] .hero h2 { font-size: 4rem; color: #2c3a2f; margin-bottom: 25px; font-weight: 700; line-height: 1.1; }
-body[data-theme="organique"] .hero p { font-size: 1.2rem; margin-bottom: 40px; font-weight: 500; }
+body[data-theme="organique"] .hero h2 { font-size: 4rem; color: #2c3a2f; margin-bottom: 25px; font-weight: 700; }
 body[data-theme="organique"] .btn-cta { background: #8a9a86; color: #fff; padding: 18px 45px; text-decoration: none; border-radius: 50px; font-weight: 700; display: inline-block; }
-body[data-theme="organique"] .hero-visual { width: 80%; height: 500px; background: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80') center/cover no-repeat; border-radius: 50px; box-shadow: 0 30px 60px rgba(74, 93, 78, 0.15); margin-top: -100px; position: relative; z-index: 2; }
+body[data-theme="organique"] .hero-visual { width: 80%; height: 500px; background: var(--bg-img-1) center/cover; border-radius: 50px; box-shadow: 0 30px 60px rgba(74, 93, 78, 0.15); margin-top: -100px; position: relative; z-index: 2; }
 body[data-theme="organique"] .services { padding: 150px 5vw 100px; }
-body[data-theme="organique"] .section-title { text-align: center; margin-bottom: 70px; }
-body[data-theme="organique"] .section-title h2 { font-size: 3rem; color: #2c3a2f; }
-body[data-theme="organique"] .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+body[data-theme="organique"] .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 40px;}
 body[data-theme="organique"] .card { background: #fff; padding: 50px 40px; border-radius: 40px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.03); }
-body[data-theme="organique"] .card-icon { font-size: 50px; margin-bottom: 25px; }
-body[data-theme="organique"] .card h3 { font-size: 1.8rem; color: #2c3a2f; margin-bottom: 15px; }
 body[data-theme="organique"] footer { background: #2c3a2f; color: #e3e8de; padding: 80px 5vw; border-radius: 60px 60px 0 0; }
-body[data-theme="organique"] .footer-content { display: flex; justify-content: space-around; }
+
+/* 7. Classique */
+body[data-theme="classique"] { background: #f8f9fa; color: #333; font-family: 'Inter', sans-serif; padding-bottom: 60px; }
+body[data-theme="classique"] h1, body[data-theme="classique"] h2, body[data-theme="classique"] h3 { font-family: 'Lora', serif; color: #1a365d; }
+body[data-theme="classique"] .site-header { display: flex; justify-content: space-between; padding: 20px 10vw; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+body[data-theme="classique"] .logo { font-size: 26px; font-weight: 700; color: #1a365d; }
+body[data-theme="classique"] .site-nav a { text-decoration: none; color: #4a5568; font-weight: 600; margin-left: 20px; }
+body[data-theme="classique"] .hero { text-align: center; padding: 120px 20px; background: linear-gradient(rgba(26, 54, 93, 0.85), rgba(26, 54, 93, 0.85)), var(--bg-img-2) center/cover; color: white; }
+body[data-theme="classique"] .hero-visual { display: none; }
+body[data-theme="classique"] .hero h2 { font-size: 3.5rem; margin-bottom: 20px; color: #fff; }
+body[data-theme="classique"] .btn-cta { background: #2b6cb0; color: #fff; padding: 15px 35px; text-decoration: none; border-radius: 4px; font-weight: 600; display: inline-block; }
+body[data-theme="classique"] .services { padding: 80px 10vw; text-align: center; }
+body[data-theme="classique"] .services-grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin-top: 40px;}
+body[data-theme="classique"] .card { background: #fff; padding: 40px 30px; border-radius: 8px; flex: 1; min-width: 300px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #edf2f7; }
+body[data-theme="classique"] footer { background: #1a202c; color: #a0aec0; padding: 60px 10vw 20px; text-align: left; }
 
 /* =========================================
-   THEME 7 : CLASSIQUE / CORPORATE
+   LES 10 NOUVEAUX THÈMES (8 à 17)
    ========================================= */
-body[data-theme="classique"] { background-color: #f8f9fa; color: #333; font-family: 'Inter', sans-serif; padding-bottom: 60px; }
-body[data-theme="classique"] h1, body[data-theme="classique"] h2, body[data-theme="classique"] h3 { font-family: 'Lora', serif; color: #1a365d; }
-body[data-theme="classique"] .site-wrapper { display: block; }
-body[data-theme="classique"] .site-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 10vw; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: relative; z-index: 100; }
-body[data-theme="classique"] .logo { font-size: 26px; font-weight: 700; color: #1a365d; font-family: 'Lora', serif; }
-body[data-theme="classique"] .site-nav a { margin-left: 30px; text-decoration: none; color: #4a5568; font-weight: 600; transition: color 0.2s; }
-body[data-theme="classique"] .site-nav a:hover { color: #2b6cb0; }
-body[data-theme="classique"] .hero { text-align: center; padding: 120px 20px; background: linear-gradient(rgba(26, 54, 93, 0.85), rgba(26, 54, 93, 0.85)), url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; color: white; }
-body[data-theme="classique"] .hero-visual { display: none; }
-body[data-theme="classique"] .hero-content { max-width: 700px; margin: 0 auto; }
-body[data-theme="classique"] .hero h2 { font-size: 3.5rem; margin-bottom: 20px; color: #fff; line-height: 1.2; }
-body[data-theme="classique"] .hero p { font-size: 1.1rem; margin-bottom: 40px; line-height: 1.6; color: #e2e8f0; }
-body[data-theme="classique"] .btn-cta { background: #2b6cb0; color: #fff; padding: 15px 35px; text-decoration: none; border-radius: 4px; font-weight: 600; display: inline-block; transition: background 0.2s; }
-body[data-theme="classique"] .btn-cta:hover { background: #1a365d; }
-body[data-theme="classique"] .services { padding: 80px 10vw; text-align: center; }
-body[data-theme="classique"] .section-title h2 { font-size: 2.5rem; margin-bottom: 50px; position: relative; padding-bottom: 15px; }
-body[data-theme="classique"] .section-title h2::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: #2b6cb0; }
-body[data-theme="classique"] .services-grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; }
-body[data-theme="classique"] .card { background: #fff; padding: 40px 30px; border-radius: 8px; flex: 1; min-width: 300px; max-width: 380px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #edf2f7; transition: transform 0.2s; }
-body[data-theme="classique"] .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
-body[data-theme="classique"] .card-icon { font-size: 40px; margin-bottom: 20px; }
-body[data-theme="classique"] .card h3 { font-size: 1.5rem; margin-bottom: 15px; }
-body[data-theme="classique"] footer { background: #1a202c; color: #a0aec0; padding: 60px 10vw 20px; text-align: left; }
-body[data-theme="classique"] .footer-content { display: flex; justify-content: space-between; border-bottom: 1px solid #2d3748; padding-bottom: 40px; margin-bottom: 20px; }
-body[data-theme="classique"] .footer-col h4 { color: #fff; margin-bottom: 15px; }
+
+/* 8. Neumorphisme (Soft UI) */
+body[data-theme="neumorphisme"] { background-color: #e0e5ec; color: #4a5568; font-family: 'Outfit', sans-serif; padding-bottom: 60px; }
+body[data-theme="neumorphisme"] .site-header { display: flex; justify-content: space-between; padding: 20px 5vw; background: transparent; }
+body[data-theme="neumorphisme"] .logo { font-size: 28px; font-weight: 800; color: #3182ce; text-shadow: 3px 3px 6px rgba(163,177,198,0.5), -3px -3px 6px rgba(255,255,255, 0.8); }
+body[data-theme="neumorphisme"] .site-nav { padding: 10px 20px; border-radius: 15px; box-shadow: 9px 9px 16px rgba(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.5); }
+body[data-theme="neumorphisme"] .site-nav a { text-decoration: none; color: #4a5568; font-weight: 600; margin: 0 15px; }
+body[data-theme="neumorphisme"] .hero { text-align: center; padding: 100px 5vw; }
+body[data-theme="neumorphisme"] .hero-visual { display: none; }
+body[data-theme="neumorphisme"] .hero-content { padding: 60px; border-radius: 30px; box-shadow: 9px 9px 16px rgba(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.5); max-width: 900px; margin: 0 auto; }
+body[data-theme="neumorphisme"] .hero h2 { font-size: 3.5rem; color: #2d3748; margin-bottom: 20px; }
+body[data-theme="neumorphisme"] .btn-cta { background: #e0e5ec; color: #3182ce; padding: 15px 40px; text-decoration: none; border-radius: 50px; font-weight: 800; box-shadow: 9px 9px 16px rgba(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.5); display: inline-block; transition: 0.2s; }
+body[data-theme="neumorphisme"] .btn-cta:active { box-shadow: inset 6px 6px 10px rgba(163,177,198,0.6), inset -6px -6px 10px rgba(255,255,255, 0.5); }
+body[data-theme="neumorphisme"] .services { padding: 80px 5vw; text-align: center; }
+body[data-theme="neumorphisme"] .services-grid { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; margin-top: 50px; }
+body[data-theme="neumorphisme"] .card { background: #e0e5ec; padding: 40px; border-radius: 20px; flex: 1; min-width: 300px; box-shadow: 9px 9px 16px rgba(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.5); }
+body[data-theme="neumorphisme"] footer { padding: 60px 5vw; text-align: center; box-shadow: inset 0px 10px 20px rgba(163,177,198,0.3); }
+
+/* 9. Glassmorphisme */
+body[data-theme="glassmorphisme"] { background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%); color: #fff; font-family: 'Inter', sans-serif; padding-bottom: 60px; min-height: 100vh; }
+body[data-theme="glassmorphisme"] .site-header { display: flex; justify-content: space-between; padding: 20px 5vw; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.2); }
+body[data-theme="glassmorphisme"] .logo { font-size: 26px; font-weight: 700; color: #fff; }
+body[data-theme="glassmorphisme"] .site-nav a { text-decoration: none; color: #fff; font-weight: 600; margin-left: 25px; }
+body[data-theme="glassmorphisme"] .hero { text-align: center; padding: 150px 5vw; position: relative; }
+body[data-theme="glassmorphisme"] .hero-visual { display: none; }
+body[data-theme="glassmorphisme"] .hero-content { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.3); padding: 80px 40px; border-radius: 30px; max-width: 800px; margin: 0 auto; box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); }
+body[data-theme="glassmorphisme"] .hero h2 { font-size: 4rem; margin-bottom: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+body[data-theme="glassmorphisme"] .btn-cta { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.5); color: #fff; padding: 15px 40px; text-decoration: none; border-radius: 50px; font-weight: 600; display: inline-block; backdrop-filter: blur(5px); }
+body[data-theme="glassmorphisme"] .services { padding: 80px 5vw; text-align: center; }
+body[data-theme="glassmorphisme"] .services-grid { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; margin-top: 40px; }
+body[data-theme="glassmorphisme"] .card { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); padding: 40px; border-radius: 20px; flex: 1; min-width: 300px; box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1); }
+body[data-theme="glassmorphisme"] footer { background: rgba(255,255,255,0.05); border-top: 1px solid rgba(255,255,255,0.2); padding: 40px 5vw; text-align: center; }
+
+/* 10. Rétro 90s */
+body[data-theme="retro"] { background: #ffcc00; color: #000; font-family: 'Space Mono', monospace; padding-bottom: 60px; }
+body[data-theme="retro"] .site-header { display: flex; justify-content: space-between; padding: 15px 5vw; background: #fff; border-bottom: 5px solid #000; box-shadow: 0 5px 0 #000; margin-bottom: 10px; }
+body[data-theme="retro"] .logo { font-size: 30px; font-weight: 700; color: #ff00ff; text-shadow: 2px 2px 0 #000; }
+body[data-theme="retro"] .site-nav a { text-decoration: none; color: #000; font-weight: 700; margin-left: 20px; background: #00ffff; border: 2px solid #000; padding: 5px 10px; box-shadow: 3px 3px 0 #000; }
+body[data-theme="retro"] .hero { text-align: center; padding: 80px 5vw; }
+body[data-theme="retro"] .hero-visual { display: none; }
+body[data-theme="retro"] .hero-content { background: #fff; border: 5px solid #000; padding: 60px; max-width: 800px; margin: 0 auto; box-shadow: 15px 15px 0 #000; }
+body[data-theme="retro"] .hero h2 { font-size: 3.5rem; text-transform: uppercase; margin-bottom: 30px; color: #000; }
+body[data-theme="retro"] .btn-cta { background: #ff00ff; color: #fff; padding: 15px 30px; text-decoration: none; border: 4px solid #000; font-weight: 700; display: inline-block; font-size: 1.2rem; box-shadow: 8px 8px 0 #000; }
+body[data-theme="retro"] .services { padding: 80px 5vw; }
+body[data-theme="retro"] .section-title h2 { background: #00ffff; display: inline-block; padding: 10px 20px; border: 4px solid #000; box-shadow: 5px 5px 0 #000; }
+body[data-theme="retro"] .services-grid { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; margin-top: 40px; }
+body[data-theme="retro"] .card { background: #fff; padding: 30px; border: 5px solid #000; box-shadow: 10px 10px 0 #000; flex: 1; min-width: 300px; }
+body[data-theme="retro"] footer { background: #fff; border-top: 5px solid #000; padding: 40px 5vw; text-align: center; }
+
+/* 11. Monochrome */
+body[data-theme="monochrome"] { background: #ffffff; color: #000000; font-family: 'Inter', sans-serif; padding-bottom: 60px; }
+body[data-theme="monochrome"] .site-header { display: flex; justify-content: space-between; padding: 30px 5vw; border-bottom: 2px solid #000; }
+body[data-theme="monochrome"] .logo { font-size: 28px; font-weight: 800; text-transform: uppercase; letter-spacing: -2px; }
+body[data-theme="monochrome"] .site-nav a { text-decoration: none; color: #000; font-weight: 600; margin-left: 30px; text-transform: uppercase; }
+body[data-theme="monochrome"] .hero { display: flex; border-bottom: 2px solid #000; }
+body[data-theme="monochrome"] .hero-content { flex: 1; padding: 10vw 5vw; border-right: 2px solid #000; }
+body[data-theme="monochrome"] .hero h2 { font-size: 5rem; font-weight: 800; line-height: 1; margin-bottom: 30px; text-transform: uppercase; letter-spacing: -2px; }
+body[data-theme="monochrome"] .btn-cta { background: #000; color: #fff; padding: 20px 40px; text-decoration: none; font-weight: 700; display: inline-block; text-transform: uppercase; }
+body[data-theme="monochrome"] .hero-visual { flex: 1; background: var(--bg-img-3) center/cover; filter: grayscale(100%) contrast(1.2); }
+body[data-theme="monochrome"] .services { padding: 100px 5vw; }
+body[data-theme="monochrome"] .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0; border: 2px solid #000; margin-top: 50px; }
+body[data-theme="monochrome"] .card { padding: 50px; border-right: 2px solid #000; border-bottom: 2px solid #000; }
+body[data-theme="monochrome"] .card:last-child { border-right: none; }
+body[data-theme="monochrome"] .card h3 { font-size: 2rem; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; }
+body[data-theme="monochrome"] footer { border-top: 2px solid #000; padding: 60px 5vw; display: flex; justify-content: space-between; text-transform: uppercase; font-weight: 600; }
+
+/* 12. Cyberpunk */
+body[data-theme="cyberpunk"] { background: #0b0213; color: #00ffff; font-family: 'Space Mono', monospace; padding-bottom: 60px; }
+body[data-theme="cyberpunk"] .site-header { display: flex; justify-content: space-between; padding: 20px 5vw; border-bottom: 1px solid #ff0055; box-shadow: 0 0 15px rgba(255,0,85,0.4); }
+body[data-theme="cyberpunk"] .logo { font-size: 30px; font-weight: 700; color: #ff0055; text-shadow: 0 0 10px #ff0055; letter-spacing: 2px; }
+body[data-theme="cyberpunk"] .site-nav a { text-decoration: none; color: #00ffff; margin-left: 25px; text-transform: uppercase; transition: 0.3s; }
+body[data-theme="cyberpunk"] .site-nav a:hover { color: #ff0055; text-shadow: 0 0 8px #ff0055; }
+body[data-theme="cyberpunk"] .hero { display: flex; align-items: center; min-height: 80vh; background: linear-gradient(rgba(11,2,19,0.8), rgba(11,2,19,0.8)), var(--bg-img-2) center/cover; padding: 0 5vw; }
+body[data-theme="cyberpunk"] .hero-visual { display: none; }
+body[data-theme="cyberpunk"] .hero h2 { font-size: 4rem; color: #fff; text-shadow: 2px 2px 0 #ff0055, -2px -2px 0 #00ffff; margin-bottom: 30px; text-transform: uppercase; }
+body[data-theme="cyberpunk"] .btn-cta { background: transparent; border: 2px solid #00ffff; color: #00ffff; padding: 15px 30px; text-decoration: none; font-weight: 700; display: inline-block; text-transform: uppercase; box-shadow: 0 0 10px rgba(0,255,255,0.5), inset 0 0 10px rgba(0,255,255,0.5); }
+body[data-theme="cyberpunk"] .services { padding: 100px 5vw; }
+body[data-theme="cyberpunk"] .section-title h2 { color: #ff0055; text-shadow: 0 0 10px #ff0055; }
+body[data-theme="cyberpunk"] .services-grid { display: flex; gap: 30px; flex-wrap: wrap; margin-top: 50px; }
+body[data-theme="cyberpunk"] .card { background: rgba(0,255,255,0.05); padding: 40px; border: 1px solid #00ffff; flex: 1; min-width: 300px; box-shadow: inset 0 0 15px rgba(0,255,255,0.1); }
+body[data-theme="cyberpunk"] .card-icon { color: #ff0055; }
+body[data-theme="cyberpunk"] .card h3 { color: #fff; margin-bottom: 15px; }
+body[data-theme="cyberpunk"] footer { background: #000; border-top: 1px solid #ff0055; padding: 50px 5vw; text-align: center; }
+
+/* 13. Éditorial (Magazine) */
+body[data-theme="editorial"] { background: #fdfbf7; color: #1a1a1a; font-family: 'Cormorant Garamond', serif; padding-bottom: 60px; }
+body[data-theme="editorial"] .site-header { text-align: center; padding: 40px 5vw 20px; border-bottom: 1px solid #ddd; }
+body[data-theme="editorial"] .logo { font-size: 50px; font-weight: 600; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 20px; }
+body[data-theme="editorial"] .site-nav { display: flex; justify-content: center; gap: 40px; font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; padding: 15px 0; }
+body[data-theme="editorial"] .site-nav a { text-decoration: none; color: #1a1a1a; }
+body[data-theme="editorial"] .hero { padding: 60px 5vw; display: flex; gap: 40px; align-items: flex-start; }
+body[data-theme="editorial"] .hero-content { flex: 1; }
+body[data-theme="editorial"] .hero h2 { font-size: 4.5rem; line-height: 1; margin-bottom: 30px; font-weight: 600; }
+body[data-theme="editorial"] .hero p { font-size: 1.4rem; line-height: 1.8; color: #444; font-style: italic; }
+body[data-theme="editorial"] .btn-cta { font-family: 'Inter', sans-serif; background: #1a1a1a; color: #fff; padding: 15px 30px; text-decoration: none; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; display: inline-block; margin-top: 20px; }
+body[data-theme="editorial"] .hero-visual { flex: 1; height: 600px; background: var(--bg-img-1) center/cover; filter: sepia(0.2); }
+body[data-theme="editorial"] .services { padding: 80px 5vw; }
+body[data-theme="editorial"] .section-title { text-align: center; margin-bottom: 60px; }
+body[data-theme="editorial"] .section-title h2 { font-size: 3rem; }
+body[data-theme="editorial"] .services-grid { display: flex; gap: 40px; }
+body[data-theme="editorial"] .card { flex: 1; padding: 0 20px; border-right: 1px solid #ddd; }
+body[data-theme="editorial"] .card:last-child { border-right: none; }
+body[data-theme="editorial"] .card h3 { font-size: 2rem; margin-bottom: 15px; }
+body[data-theme="editorial"] .card p { font-size: 1.2rem; line-height: 1.6; color: #555; }
+body[data-theme="editorial"] footer { border-top: 3px double #1a1a1a; padding: 40px 5vw; text-align: center; font-style: italic; }
+
+/* 14. Déconstruit (Asymétrique) */
+body[data-theme="asymetrique"] { background: #e9ecef; color: #212529; font-family: 'Syne', sans-serif; padding-bottom: 60px; }
+body[data-theme="asymetrique"] .site-header { padding: 30px 5vw; display: flex; justify-content: space-between; position: relative; z-index: 5; }
+body[data-theme="asymetrique"] .logo { font-size: 32px; font-weight: 800; background: #ff4757; color: #fff; padding: 10px 20px; transform: rotate(-5deg); }
+body[data-theme="asymetrique"] .site-nav { margin-top: 20px; }
+body[data-theme="asymetrique"] .site-nav a { text-decoration: none; color: #fff; background: #2f3542; padding: 8px 15px; margin-left: -5px; font-weight: 600; display: inline-block; transform: rotate(2deg); border: 1px solid #000; }
+body[data-theme="asymetrique"] .hero { min-height: 90vh; position: relative; overflow: hidden; padding: 10vw 5vw; }
+body[data-theme="asymetrique"] .hero-content { position: relative; z-index: 2; max-width: 600px; background: #fff; padding: 50px; border: 2px solid #000; box-shadow: 20px 20px 0 rgba(0,0,0,0.1); margin-top: 50px; }
+body[data-theme="asymetrique"] .hero h2 { font-size: 4rem; font-weight: 800; line-height: 0.9; text-transform: uppercase; margin-bottom: 20px; }
+body[data-theme="asymetrique"] .btn-cta { background: #3742fa; color: #fff; padding: 15px 30px; text-decoration: none; font-weight: 800; display: inline-block; border-radius: 50px; margin-top: 20px; transform: rotate(-2deg); }
+body[data-theme="asymetrique"] .hero-visual { position: absolute; top: 10%; right: 5%; width: 50%; height: 70%; background: var(--bg-img-3) center/cover; z-index: 1; border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+body[data-theme="asymetrique"] .services { padding: 100px 5vw; }
+body[data-theme="asymetrique"] .services-grid { display: flex; gap: 30px; margin-top: 50px; }
+body[data-theme="asymetrique"] .card { background: #fff; padding: 40px; border: 2px solid #000; flex: 1; }
+body[data-theme="asymetrique"] .card-1 { transform: translateY(40px); }
+body[data-theme="asymetrique"] .card-2 { transform: translateY(-20px); background: #ff4757; color: #fff;}
+body[data-theme="asymetrique"] .card-3 { transform: translateY(20px); }
+body[data-theme="asymetrique"] .card h3 { font-size: 1.8rem; font-weight: 800; margin-bottom: 15px; }
+body[data-theme="asymetrique"] footer { padding: 80px 5vw; background: #2f3542; color: #fff; }
+
+/* 15. Terracotta (Chaleureux) */
+body[data-theme="terracotta"] { background: #fdf6e3; color: #5c4a44; font-family: 'Lora', serif; padding-bottom: 60px; }
+body[data-theme="terracotta"] .site-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 8vw; background: #e2725b; color: #fff; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; }
+body[data-theme="terracotta"] .logo { font-size: 28px; font-weight: 600; }
+body[data-theme="terracotta"] .site-nav a { text-decoration: none; color: #fff; margin-left: 30px; font-family: 'Inter', sans-serif; font-size: 14px; }
+body[data-theme="terracotta"] .hero { display: flex; align-items: center; padding: 80px 8vw; gap: 50px; }
+body[data-theme="terracotta"] .hero-content { flex: 1; }
+body[data-theme="terracotta"] .hero h2 { font-size: 4rem; color: #c05a46; margin-bottom: 20px; line-height: 1.1; }
+body[data-theme="terracotta"] .hero p { font-size: 1.2rem; margin-bottom: 40px; line-height: 1.8; }
+body[data-theme="terracotta"] .btn-cta { background: #c05a46; color: #fff; padding: 15px 40px; text-decoration: none; border-radius: 8px; font-family: 'Inter', sans-serif; font-weight: 600; display: inline-block; }
+body[data-theme="terracotta"] .hero-visual { flex: 1; height: 500px; background: var(--bg-img-1) center/cover; border-radius: 200px 200px 0 0; }
+body[data-theme="terracotta"] .services { padding: 80px 8vw; }
+body[data-theme="terracotta"] .section-title { text-align: center; margin-bottom: 60px; }
+body[data-theme="terracotta"] .services-grid { display: flex; gap: 40px; }
+body[data-theme="terracotta"] .card { background: #f4e8d3; padding: 50px 40px; border-radius: 20px; text-align: center; flex: 1; }
+body[data-theme="terracotta"] .card-icon { font-size: 40px; margin-bottom: 20px; }
+body[data-theme="terracotta"] .card h3 { font-size: 1.8rem; color: #c05a46; margin-bottom: 15px; }
+body[data-theme="terracotta"] footer { background: #e2725b; color: #fff; padding: 60px 8vw; border-top-left-radius: 30px; border-top-right-radius: 30px; text-align: center; }
+
+/* 16. Bento Box */
+body[data-theme="bento"] { background: #f0f2f5; color: #1c1e21; font-family: 'Inter', sans-serif; padding-bottom: 60px; }
+body[data-theme="bento"] .site-wrapper { max-width: 1400px; margin: 0 auto; padding: 20px; }
+body[data-theme="bento"] .site-header { display: flex; justify-content: space-between; padding: 20px 40px; background: #fff; border-radius: 24px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+body[data-theme="bento"] .logo { font-size: 24px; font-weight: 700; }
+body[data-theme="bento"] .site-nav a { text-decoration: none; color: #65676b; font-weight: 600; margin-left: 20px; }
+body[data-theme="bento"] .main-content { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+body[data-theme="bento"] .hero { grid-column: 1 / -1; display: flex; background: #fff; border-radius: 32px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+body[data-theme="bento"] .hero-content { flex: 1; padding: 80px 60px; display: flex; flex-direction: column; justify-content: center; }
+body[data-theme="bento"] .hero h2 { font-size: 3.5rem; letter-spacing: -1px; margin-bottom: 20px; }
+body[data-theme="bento"] .btn-cta { background: #1877f2; color: #fff; padding: 15px 30px; text-decoration: none; border-radius: 12px; font-weight: 600; align-self: flex-start; }
+body[data-theme="bento"] .hero-visual { flex: 1; background: var(--bg-img-3) center/cover; }
+body[data-theme="bento"] .services { grid-column: 1 / -1; margin-top: 20px; }
+body[data-theme="bento"] .section-title { display: none; } /* On cache le titre pour le style bento */
+body[data-theme="bento"] .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+body[data-theme="bento"] .card { background: #fff; padding: 40px; border-radius: 32px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+body[data-theme="bento"] .card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+body[data-theme="bento"] footer { grid-column: 1 / -1; background: #fff; padding: 40px; border-radius: 24px; margin-top: 20px; text-align: center; }
+
+/* 17. Typographique */
+body[data-theme="typographique"] { background: #e5ff00; color: #000; font-family: 'Inter', sans-serif; padding-bottom: 60px; overflow-x: hidden; }
+body[data-theme="typographique"] .site-header { padding: 20px 5vw; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #000; }
+body[data-theme="typographique"] .logo { font-size: 20px; font-weight: 800; text-transform: uppercase; }
+body[data-theme="typographique"] .site-nav a { text-decoration: none; color: #000; font-weight: 700; margin-left: 20px; text-transform: uppercase; font-size: 14px; }
+body[data-theme="typographique"] .hero { padding: 10vw 5vw 5vw; text-align: center; }
+body[data-theme="typographique"] .hero-visual { display: none; }
+body[data-theme="typographique"] .hero-content { max-width: 100%; }
+body[data-theme="typographique"] .hero h2 { font-size: 9vw; font-weight: 800; text-transform: uppercase; line-height: 0.85; letter-spacing: -4px; margin-bottom: 40px; }
+body[data-theme="typographique"] .hero p { font-size: 1.5rem; font-weight: 600; max-width: 600px; margin: 0 auto 40px; }
+body[data-theme="typographique"] .btn-cta { background: #000; color: #e5ff00; padding: 20px 50px; text-decoration: none; font-weight: 800; font-size: 1.2rem; text-transform: uppercase; border-radius: 100px; display: inline-block; }
+body[data-theme="typographique"] .services { border-top: 2px solid #000; }
+body[data-theme="typographique"] .section-title { padding: 20px 5vw; border-bottom: 2px solid #000; }
+body[data-theme="typographique"] .section-title h2 { font-size: 2vw; font-weight: 800; text-transform: uppercase; }
+body[data-theme="typographique"] .services-grid { display: flex; flex-direction: column; }
+body[data-theme="typographique"] .card { display: flex; align-items: center; padding: 40px 5vw; border-bottom: 2px solid #000; transition: background 0.3s; }
+body[data-theme="typographique"] .card:hover { background: #000; color: #e5ff00; }
+body[data-theme="typographique"] .card-icon { display: none; }
+body[data-theme="typographique"] .card h3 { font-size: 4vw; font-weight: 800; text-transform: uppercase; width: 40%; line-height: 1; letter-spacing: -2px; }
+body[data-theme="typographique"] .card p { font-size: 1.2rem; font-weight: 500; width: 60%; padding-left: 40px; }
+body[data-theme="typographique"] footer { padding: 40px 5vw; text-align: center; font-weight: 700; text-transform: uppercase; }
+
 
 /* =========================================
    RESPONSIVE GLOBAL (Mobiles & Tablettes)
@@ -208,57 +349,54 @@ body[data-theme="classique"] .footer-col h4 { color: #fff; margin-bottom: 15px; 
     
     body[data-theme="moderne"] .hero, 
     body[data-theme="industriel"] .hero,
-    body[data-theme="galerie"] .hero { grid-template-columns: 1fr; flex-direction: column; }
+    body[data-theme="galerie"] .hero,
+    body[data-theme="monochrome"] .hero,
+    body[data-theme="editorial"] .hero,
+    body[data-theme="terracotta"] .hero,
+    body[data-theme="bento"] .hero { flex-direction: column; grid-template-columns: 1fr; }
     
-    body[data-theme="moderne"] .hero-visual,
-    body[data-theme="industriel"] .hero-visual,
-    body[data-theme="galerie"] .hero-visual { min-height: 400px; width: 100%; border-radius: 0; }
+    body[data-theme="bento"] .hero-visual { min-height: 300px; width: 100%; }
+    body[data-theme="bento"] .services-grid { grid-template-columns: 1fr; }
     
-    body[data-theme="prestige"] .card { flex-direction: column; text-align: center; }
-    body[data-theme="prestige"] .card h3, body[data-theme="prestige"] .card p { width: 100%; margin-top: 15px; }
-    
-    body[data-theme="organique"] .hero-visual { width: 95%; height: 350px; }
-    
-    body[data-theme="classique"] .footer-content { flex-direction: column; gap: 30px; }
+    body[data-theme="editorial"] .services-grid, 
+    body[data-theme="terracotta"] .services-grid { flex-direction: column; }
+    body[data-theme="editorial"] .card { border-right: none; border-bottom: 1px solid #ddd; padding: 20px 0; }
 }
 
 /* =========================================
    CORRECTIONS SPÉCIFIQUES SMARTPHONES (GSM)
    ========================================= */
 @media (max-width: 768px) {
-    /* Barre de démo plus petite pour laisser de la place à l'écran */
-    .demo-bar { padding: 8px 5px; gap: 5px; }
-    .demo-bar button { padding: 6px 10px; font-size: 11px; }
-
-    /* HEADER & NAVIGATION : On empile tout proprement au centre */
-    .site-header { flex-direction: column !important; text-align: center; padding: 20px 10px !important; position: relative !important; }
+    /* HEADER & NAVIGATION */
+    .site-header { flex-direction: column !important; text-align: center; padding: 20px 10px !important; position: relative !important; height: auto !important;}
     .site-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px !important; margin-top: 15px; }
     .site-nav a { margin: 0 !important; font-size: 13px !important; }
-
-    /* On retire les positions absolues des logos pour éviter les chevauchements (Thème Luxe et Organique) */
     body[data-theme="prestige"] .logo, body[data-theme="organique"] .logo { position: relative; left: 0; margin-bottom: 10px; }
 
-    /* TEXTES HÉROS : On réduit les tailles énormes pour que ça rentre dans l'écran */
+    /* TEXTES HÉROS */
     .hero-content { padding: 60px 20px !important; text-align: center !important; margin: 0 auto !important; }
     .hero h2 { font-size: 2.5rem !important; line-height: 1.2 !important; margin-bottom: 20px !important; }
     body[data-theme="industriel"] .hero h2 { font-size: 3.5rem !important; }
+    body[data-theme="typographique"] .hero h2 { font-size: 12vw !important; }
     .hero p { font-size: 1rem !important; margin-bottom: 30px !important; }
-
-    /* BOUTONS : Centrés sur mobile */
     .btn-cta { align-self: center !important; margin: 0 auto !important; display: inline-block; }
 
-    /* SERVICES : On enlève les marges excessives */
+    /* SERVICES */
     .services { padding: 60px 20px !important; }
     .section-title h2 { font-size: 2rem !important; }
-    .services-grid { gap: 20px !important; }
-    .card { padding: 30px 20px !important; min-width: 100% !important; }
+    .services-grid { gap: 20px !important; flex-direction: column; display: flex; }
+    .card { padding: 30px 20px !important; min-width: 100% !important; border-right: none !important;}
 
-    /* AJUSTEMENTS SPÉCIFIQUES HÉROS */
-    body[data-theme="authentique"] .hero { padding: 100px 20px !important; }
-    body[data-theme="organique"] .hero { border-radius: 0 0 20% 20% / 5vw !important; padding: 120px 20px 80px 20px !important; }
-    body[data-theme="organique"] .hero-visual { height: 250px !important; margin-top: -40px !important; border-radius: 20px !important; }
-    
-    /* FOOTER : Centrer sur mobile */
+    /* ASYMÉTRIQUE CORRECTIONS */
+    body[data-theme="asymetrique"] .hero-visual { position: relative; width: 100%; height: 300px; top: 0; right: 0; margin-top: 30px; }
+    body[data-theme="asymetrique"] .card { transform: none !important; }
+
+    /* TYPOGRAPHIQUE CORRECTIONS */
+    body[data-theme="typographique"] .card { flex-direction: column; text-align: center; }
+    body[data-theme="typographique"] .card h3 { width: 100%; font-size: 2rem; margin-bottom: 15px; }
+    body[data-theme="typographique"] .card p { width: 100%; padding-left: 0; }
+
+    /* FOOTER */
     footer { padding: 40px 20px !important; text-align: center !important; }
     .footer-content { flex-direction: column !important; align-items: center !important; gap: 30px; }
 }

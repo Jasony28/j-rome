@@ -4,20 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Démonstration - Menuiserie & Carrelage</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Roboto+Slab:wght@400;700&family=Space+Grotesk:wght@600;700&family=Quicksand:wght@500;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Polices existantes et nouvelles pour les 17 thèmes -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Roboto+Slab:wght@400;700&family=Space+Grotesk:wght@600;700&family=Quicksand:wght@500;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Space+Mono:wght@400;700&family=Syne:wght@600;800&family=Cormorant+Garamond:wght@400;600&family=Outfit:wght@300;500;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body data-theme="moderne">
 
+    <!-- Barre de contrôle avec défilement horizontal pour les 17 thèmes -->
     <div class="demo-bar">
-        <h3>Styles :</h3>
+        <span class="demo-title">Styles :</span>
         <button class="active" onclick="changeTheme('moderne', this)">1. Moderne</button>
         <button onclick="changeTheme('authentique', this)">2. Artisan</button>
         <button onclick="changeTheme('prestige', this)">3. Luxe</button>
-        <button onclick="changeTheme('galerie', this)">4. Architecte (Latéral)</button>
+        <button onclick="changeTheme('galerie', this)">4. Architecte</button>
         <button onclick="changeTheme('industriel', this)">5. Brutaliste</button>
-        <button onclick="changeTheme('organique', this)">6. Organique/Zen</button>
-        <button onclick="changeTheme('classique', this)">7. Classique / Pro</button>
+        <button onclick="changeTheme('organique', this)">6. Organique</button>
+        <button onclick="changeTheme('classique', this)">7. Classique</button>
+        <button onclick="changeTheme('neumorphisme', this)">8. Neumorphisme</button>
+        <button onclick="changeTheme('glassmorphisme', this)">9. Glassmorphisme</button>
+        <button onclick="changeTheme('retro', this)">10. Rétro 90s</button>
+        <button onclick="changeTheme('monochrome', this)">11. Monochrome</button>
+        <button onclick="changeTheme('cyberpunk', this)">12. Cyberpunk</button>
+        <button onclick="changeTheme('editorial', this)">13. Éditorial</button>
+        <button onclick="changeTheme('asymetrique', this)">14. Déconstruit</button>
+        <button onclick="changeTheme('terracotta', this)">15. Terracotta</button>
+        <button onclick="changeTheme('bento', this)">16. Bento Box</button>
+        <button onclick="changeTheme('typographique', this)">17. Typographique</button>
     </div>
 
     <div class="site-wrapper">
@@ -46,17 +58,17 @@
                     <h2>Nos Prestations</h2>
                 </div>
                 <div class="services-grid">
-                    <div class="card">
+                    <div class="card card-1">
                         <div class="card-icon">🪵</div>
                         <h3>Menuiserie</h3>
                         <p>Aménagement sur mesure, dressing, pose de parquet et conception d'escaliers. Un travail minutieux adapté à votre intérieur.</p>
                     </div>
-                    <div class="card">
+                    <div class="card card-2">
                         <div class="card-icon">🪨</div>
                         <h3>Carrelage</h3>
                         <p>Pose de pierres naturelles, faïence, mosaïque et dalles extérieures. Des finitions impeccables pour une durabilité maximale.</p>
                     </div>
-                    <div class="card">
+                    <div class="card card-3">
                         <div class="card-icon">📐</div>
                         <h3>Rénovation Globale</h3>
                         <p>Gestion complète de votre projet de salle de bain ou de cuisine, coordonnant la menuiserie et le revêtement de sol.</p>
